@@ -1,80 +1,33 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-void menu();
-void addSong();
-void displaySongs();
-struct songs
-{
-    char Title[100];
-    char Singer[25];
-    char Genre[25];
-    float cost;
-}studio[200];
-int i = 0;
-FILE *fPointer;
-char readFile[200];
-int main()
-{
-    int choice;
-    fPointer = fopen("cdlist","a+");
-    do
-    {
-        putchar('\n');
-        menu();
-        putchar('\n');
-        puts("Enter a choice");
-        scanf("%d%*c",&choice);
-        putchar('\n');
+#include <math.h>
 
-        switch(choice)
-        {
-            case 1:
-                addSong();
-                break;
-            case 2:
-                displaySongs();
-                break;
-            case 3:
-                exit(0);
-            default: printf("\n%d is not a valid choice\n",choice);
-                     continue;
-        }
-    }while((choice>=1)||(choice<=3));
-    fclose(fPointer);
-    return 0;
-}
-void menu()
-{
-    puts("What function would you like to do today?");
-    puts("1. Add a new song");
-    puts("2. Display existing songs");
-    puts("3. Exit");
-}
-void addSong()
-{
-    fprintf(fPointer,"\n");
-    puts("Enter title of the song");
-    fgets(studio[i].Title,sizeof(studio[i].Title),stdin);
-    fprintf(fPointer,"Song name: %s",studio[i].Title);
-    puts("Enter name of the singer");
-    fgets(studio[i].Singer,sizeof(studio[i].Singer),stdin);
-    fprintf(fPointer,"Singer name: %s",studio[i].Singer);
-    puts("Enter name of the genre");
-    fgets(studio[i].Genre,sizeof(studio[i].Genre),stdin);
-    fprintf(fPointer,"Genre: %s",studio[i].Genre);
-    puts("Enter the price of the cd");
-    scanf("%f",&studio[i].cost);
-    fprintf(fPointer,"Price: %.2f rupees\n",studio[i].cost);
-    i++;
-}
-void displaySongs()
-{
-    fseek(fPointer,0,SEEK_SET);
-    while(!feof(fPointer))
-    {
-        fgets(readFile,sizeof(readFile),fPointer);
-        readFile[strcspn(readFile,"\n")] = 0;
-        puts(readFile);
-    }
-}
+int main() {
+
+  char x;
+  double first, second;
+  printf("Enter an operator from the following options (+, -, *, /, ^, sqrt): ");
+  scanf("%c", &x);
+  printf("Enter two operands: ");
+  scanf("%lf %lf", &first, &second);
+
+  switch (x) {
+    case '+':
+      printf("%.1lf + %.1lf = %.1lf", first, second, first + second);
+      break;
+    case '-':
+      printf("%.1lf - %.1lf = %.1lf", first, second, first - second);
+      break;
+    case '*':
+      printf("%.1lf * %.1lf = %.1lf", first, second, first * second);
+      break;
+    case '/':
+      printf("%.1lf / %.1lf = %.1lf", first, second, first / second);
+      break;
+    case '^': 
+      printf("%.1lf ^ %.1lf = %.1lf", first, second, pow(first,second));
+      break;
+    default:
+      printf("Please enter an operator that is present in the options");
+  }
+  return 0;
+  }
