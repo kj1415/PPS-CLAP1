@@ -5,7 +5,7 @@ int main() {
 
   char x;
   double first, second;
-  printf("Enter an operator from the following options (+, -, *, /, ^, sqrt): ");
+  printf("Enter an operator from the following options (+, -, *, /, ^): ");
   scanf("%c", &x);
   printf("Enter two operands: ");
   scanf("%lf %lf", &first, &second);
